@@ -127,15 +127,10 @@ def list_products():
     results = [product.serialize() for product in products]
     app.logger.info("[%s] Products returned", len(results))
     return results, status.HTTP_200_OK
+
+
 ######################################################################
 # R E A D   A   P R O D U C T
-######################################################################
-
-#
-# PLACE YOUR CODE HERE TO READ A PRODUCT
-#
-######################################################################
-# READ A PRODUCT
 ######################################################################
 @app.route("/products/<int:product_id>", methods=["GET"])
 def get_products(product_id):
@@ -152,6 +147,7 @@ def get_products(product_id):
 
     app.logger.info("Returning product: %s", product.name)
     return product.serialize(), status.HTTP_200_OK
+
 
 ######################################################################
 # UPDATE AN EXISTING PRODUCT
@@ -174,6 +170,8 @@ def update_products(product_id):
     product.id = product_id
     product.update()
     return product.serialize(), status.HTTP_200_OK
+
+
 ######################################################################
 # DELETE A PRODUCT
 ######################################################################

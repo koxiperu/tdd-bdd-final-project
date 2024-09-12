@@ -72,8 +72,14 @@ class TestProductModel(unittest.TestCase):
     #  T E S T   C A S E S
     ######################################################################
     def test_update_empty_id(self):
+        """Update product and test if id empty"""
         # Create a mock Product instance without an ID
-        product = Product(name="Test Product", description="Test description", price=Decimal('10.00'), available=True, category="ELECTRONICS")
+        product = Product(
+            name="Test Product",
+            description="Test description",
+            price=Decimal('10.00'),
+            available=True,
+            category="ELECTRONICS")
 
         # Call update and expect DataValidationError
         with self.assertRaises(DataValidationError):
@@ -81,8 +87,9 @@ class TestProductModel(unittest.TestCase):
 
         # Assert that logger.info was not called in case of exception
         self.assertFalse(self.mock_logger.info.called)
-    
+
     def test_deserialize_missing_attribute(self):
+        """Test if missing attributes when deserialising"""
         product = Product()
         # Simulate incorrect data type for 'available'
         data = {
@@ -96,6 +103,7 @@ class TestProductModel(unittest.TestCase):
             product.deserialize(data)
 
     def test_deserialize_type_attribute(self):
+        """Test deserialising"""
         product = Product()
         # Simulate incorrect data type for 'available'
         data = {
@@ -110,6 +118,7 @@ class TestProductModel(unittest.TestCase):
             product.deserialize(data)
 
     def test_deserialize_empty(self):
+        """Test deserialising"""
         product = Product()
         # Simulate incorrect data type for 'available'
         data = {
